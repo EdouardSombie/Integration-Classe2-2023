@@ -34,6 +34,7 @@ body {
 	padding: 10px 0;
 	position: fixed;
 	width: 100%;
+	z-index: 10;
 }
 
 .site-header nav {
@@ -81,4 +82,82 @@ body {
 	bottom: 0;
 	width: 100%;
 	text-align: center;
+}
+
+/* SECTION 2 */
+
+.section2 {
+	background-color: #008cda;
+}
+
+.section2 h1 {
+	text-align: center;
+}
+
+.benefit-list {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.benefit-list li {
+	float: left;
+	width: 25%;
+}
+
+.benefit {
+	text-align: center;
+	padding: 2em;
+}
+
+/* SECTION 3 */
+
+.section3 {
+	background-color: #006ba6;
+	padding-bottom: 20px;
+}
+
+.section3 h1 {
+	text-align: center;
+}
+
+.offer-list {
+	padding: 0;
+	list-style: none;
+	width: 70%;
+	margin: 0 auto;
+}
+
+.offer-list > li {
+	float: left;
+	width: 48%;
+}
+
+.offer-list > li:first-child {
+	margin-right: 4%;
+}
+
+.section3 footer {
+	margin-top: 60px;
+	text-align: center;
+}
+
+/* FOOTER */
+
+.site-footer {
+	padding: 20px 0;
+}
+
+.site-footer nav ul {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.site-footer nav li {
+	float: left;
+}
+
+.site-footer small {
+	right: 0;
 }
