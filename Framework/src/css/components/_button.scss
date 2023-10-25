@@ -1,0 +1,33 @@
+.button {
+	--text-color: var(--white);
+	display: inline-block;
+	font-family: var(--main-font);
+	color: var(--text-color);
+	text-decoration: none;
+	font-weight: 600;
+	font-size: rem(16);
+	line-height: rem(18);
+	padding: rem(10) rem(16);
+	border-radius: var(--main-radius);
+	border: none;
+	background-color: var(--button-bg-color);
+	cursor: pointer;
+	// Modificateurs de couleur
+	&-primary {
+		--button-bg-color: var(--blue);
+	}
+	&-secondary {
+		--button-bg-color: var(--grey);
+	}
+	&-danger {
+		--button-bg-color: var(--red);
+	}
+
+	// Modificateurs de taille
+	&-lg {
+		padding: rem(16) rem(24);
+	}
+	&-sm {
+		padding: rem(8) rem(12);
+	}
+}
