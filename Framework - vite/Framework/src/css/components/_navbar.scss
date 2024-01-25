@@ -1,22 +1,12 @@
 .navbar {
 	position: relative;
 	padding: rem(10) rem(16);
-	background-color: var(--grey);
 	.container {
-		@include flexbox(row, nowrap, space-between, center, rem(30));
-		background-color: inherit;
+		@include flexbox(row, wrap, space-between, center, 0);
 	}
-	ul {
-		@include resetList;
-		@include flexbox(row, wrap, flex-start, center, rem(18));
-		flex-grow: 1;
-		a {
-			font-size: rem(18);
-			color: inherit;
-		}
-	}
+
 	form {
-		@include flexbox(row, wrap, flex-end, stretch, rem(10));
+		@include flexbox(row, wrap, flex-start, stretch, rem(10));
 		.button {
 			--text-color: var(--grey);
 		}
@@ -31,51 +21,100 @@
 		line-height: rem(28);
 		font-weight: 500;
 	}
+
 	&_toggle_button {
-		display: none;
-		width: rem(20);
-		height: rem(20);
-		@extend .menu-svg;
-		background-position: center;
-		background-size: contain;
-		background-repeat: no-repeat;
-		background-color: transparent;
-		border: none;
-		cursor: pointer;
-	}
+		@include resetButton;
+		display: block;
+		font-size: 0;
+		height: 1rem;
+		width: 1rem;
+		line-height: 0;
+		position: relative;
+		$lineHeight: rem(3);
 
-	&_toggle_content {
-		@include flexbox(row, nowrap, space-between, center, rem(30));
-		background-color: inherit;
-		flex-grow: 1;
-		transition: max-height 0.3s linear;
-		max-height: 0;
-		overflow: hidden;
-		&.toggled {
-			max-height: rem(400);
-		}
-	}
-
-	@media screen and (max-width: $md-size) {
-		&_toggle_button {
-			display: block;
-		}
-		&_toggle_content {
-			position: absolute;
-			top: 100%;
-			left: 0;
+		span,
+		&::before,
+		&::after {
+			content: "";
+			height: $lineHeight;
 			width: 100%;
-			background-color: inherit;
-			flex-direction: column;
-			align-items: flex-start;
+			background-color: currentColor;
+			position: absolute;
+			top: 0;
+			left: 0;
+			transition: all 0.3s;
+			transform-origin: center;
+		}
+		&::after {
+			top: auto;
+			bottom: 0;
+		}
+		span {
+			top: 50%;
+			transform: translateY(-50%);
+		}
+		&.toggled {
+			span {
+				transform: translateY(-50%) scaleX(0);
+			}
+			&::before {
+				top: 50%;
+				transform: translateY(-50%) rotate(45deg);
+			}
+			&::after {
+				bottom: 50%;
+				transform: translateY(50%) rotate(-45deg);
+			}
+		}
+	}
+	&_toggle_content {
+		//padding: rem(10) rem(16); // mieux vaut mettre du margin sur l'enfant (transition sur la height)
+		// position: absolute;
+		// top: 100%;
+		// left: 0;
+		width: 100%;
+		background-color: inherit;
+		flex-direction: column;
+		align-items: flex-start;
+		overflow: hidden;
+		max-height: 0;
+		transition: max-height 0.5s;
+	}
+	ul {
+		@include resetList;
+		@include flexbox(column, wrap, flex-start, flex-start, rem(18));
+		margin: 1rem rem(0);
+		a {
+			font-size: rem(18);
+			color: inherit;
+		}
+	}
+
+	@media screen and (min-width: $md-size) {
+		.container {
+			flex-wrap: nowrap;
+			gap: rem(30);
 		}
 		ul {
-			margin: rem(10) rem(16) 0;
-			flex-direction: column;
-			align-items: flex-start;
+			flex-direction: row;
+			align-items: center;
+			flex-grow: 1;
+			margin: rem(0);
 		}
-		form {
-			margin: 0 rem(16) rem(10);
+		&_toggle_button {
+			display: none;
+		}
+		&_toggle_content {
+			@include flexbox(row, nowrap, space-between, center, rem(30));
+			flex-grow: 1;
+			position: relative;
+			top: 0;
+			left: 0;
+			width: auto;
+			max-height: none !important;
+		}
+		.form {
+			justify-content: flex-end;
 		}
 	}
 }
