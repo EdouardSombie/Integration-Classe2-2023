@@ -1,8 +1,10 @@
 .navbar {
 	position: relative;
 	padding: rem(10) rem(16);
+	background-color: var(--grey);
 	.container {
 		@include flexbox(row, nowrap, space-between, center, rem(30));
+		background-color: inherit;
 	}
 	ul {
 		@include resetList;
@@ -44,7 +46,14 @@
 
 	&_toggle_content {
 		@include flexbox(row, nowrap, space-between, center, rem(30));
+		background-color: inherit;
 		flex-grow: 1;
+		transition: max-height 0.3s linear;
+		max-height: 0;
+		overflow: hidden;
+		&.toggled {
+			max-height: rem(400);
+		}
 	}
 
 	@media screen and (max-width: $md-size) {
@@ -52,7 +61,6 @@
 			display: block;
 		}
 		&_toggle_content {
-			padding: rem(10) rem(16);
 			position: absolute;
 			top: 100%;
 			left: 0;
@@ -62,8 +70,12 @@
 			align-items: flex-start;
 		}
 		ul {
+			margin: rem(10) rem(16) 0;
 			flex-direction: column;
 			align-items: flex-start;
+		}
+		form {
+			margin: 0 rem(16) rem(10);
 		}
 	}
 }
